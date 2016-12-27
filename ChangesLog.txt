@@ -1,0 +1,15 @@
+15 April 2015
+   released version 1.0.2 of stock exchange sim
+
+     Change log:
+        -Updated: All `Company` filework is finished.
+        -Updated: Finished RichQuickAI's buy and sell functions
+        -Fixed: Hanging references to old pointer system for desirable companys in most of the AIs
+        -Removed: Random AI; it has been commented out from functioning
+
+06 April 2015
+   released version 1.0.0 of stock exchange sim
+
+     Change log:
+        -New: 
+
