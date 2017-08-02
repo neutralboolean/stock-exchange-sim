@@ -20,7 +20,7 @@ class StockAI {
 };
 
 class InvestorAI : public StockAI {
-    public:
+    private:
         InvestorAI(double capital_p);
 
         virtual void searchExchange( std::vector<Company*> arg ) override;
@@ -28,11 +28,13 @@ class InvestorAI : public StockAI {
         virtual void buyStock() override;
 
         virtual void sellStock() override;
+
+        std::string name = "Investor";
 };
 
 class CautiousAI : public StockAI {
     //buys stock
-    public:
+    private:
         CautiousAI(double capital_p);
 
         virtual void searchExchange( std::vector<Company*> arg ) override;
@@ -58,13 +60,14 @@ class RandomAI : public StockAI {
 };
 */
 
-class RichQuickAI : public StockAI {
-    //buys stock at a some arbitrarily low price and sells at some later arbitrarily high price
-    //goal is to have as much capital as possible
-    //will not have their capital below 200$ and will not spend more than 3/5 of their entire capital in one go
+//buys stock at a some arbitrarily low price and sells at some later arbitrarily high price
+//goal is to have as much capital as possible
+//will not have their capital below 200$ and will not spend more than 3/5 of their entire capital in one go
 
-    //sells when
-    public:
+//sells when
+class RichQuickAI : public StockAI {
+
+    private:
         RichQuickAI(double capital_p);
 
         virtual void searchExchange( std::vector<Company*> arg ) override;

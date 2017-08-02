@@ -75,44 +75,44 @@ void Company::simulateEarnings(int market_conditions){
         switch(market_conditions){
             case 1:
                 //good day
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::uniform_real_distribution<double> earnings_distribution(-50000.0, 300000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-25000.0, 750000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-10000.0, 3000000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
                 break;
             case 2:
                 //bad day
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::uniform_real_distribution<double> earnings_distribution(-300000.0, 50000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-175000.0, 75000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-80000.0, 2000000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
                 break;
             default:
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::normal_distribution<double> earnings_distribution(0.0, 200000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-100000.0,450000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-50000,2500000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
@@ -124,44 +124,44 @@ void Company::simulateEarnings(int market_conditions){
         switch(market_conditions){
             case 3:
                 //std::cout << "Food stocks are trending high." << std::endl << std::endl;
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::uniform_real_distribution<double> earnings_distribution(-50000.0, 300000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-25000.0, 750000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-10000.0, 3000000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
                 break;
             case 4:
                 //std::cout << "Food imports AND exports have been hit by inclement weather." << std::endl << std::endl;
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::uniform_real_distribution<double> earnings_distribution(-300000.0, 50000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-175000.0, 75000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-80000.0, 2000000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
                 break;
             default:
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::normal_distribution<double> earnings_distribution(0.0, 200000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-100000.0,450000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-50000,2500000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
@@ -173,44 +173,44 @@ void Company::simulateEarnings(int market_conditions){
         switch(market_conditions){
             case 5:
                 // std::cout << "Oil prices are only going to rise for the foreseeable future." << std::endl << std::endl;
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::uniform_real_distribution<double> earnings_distribution(-50000.0, 300000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-25000.0, 750000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-10000.0, 3000000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
                 break;
             case 6:
                 // std::cout << "New drilling spots have flooded the market with oil!" << std::endl << std::endl;
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::uniform_real_distribution<double> earnings_distribution(-300000.0, 50000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-175000.0, 75000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-80000.0, 2000000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
                 break;
             default:
-                if(this->company_type == 'S'){
+                if(this->company_size == 'S'){
                     std::normal_distribution<double> earnings_distribution(0.0, 200000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'E'){
+                else if(this->company_size == 'E'){
                     std::uniform_real_distribution<double> earnings_distribution(-100000.0,450000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }
-                else if(this->company_type == 'R'){
+                else if(this->company_size == 'R'){
                     std::uniform_real_distribution<double> earnings_distribution(-50000,2500000.0);
                     this->daily_earnings = earnings_distribution(genny);
                 }

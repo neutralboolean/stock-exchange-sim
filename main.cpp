@@ -49,7 +49,7 @@ int main()
                 --decide after preliminary tests, if the opening company simulations can be excised
         */
 
-        simulateConditions(market_conditions);
+        market_conditions = simulateConditions();
         for(int timer = 0; timer < 7; timer++)
             {
             simulateMarket(company_vector, ai_vector, market_conditions);
@@ -58,13 +58,14 @@ int main()
     return 0;
 }
 
-void simulateConditions(int& market_conditions){
+int simulateConditions(){
     // good/bad day for: [1,2]tech, [3,4]food, [5,6] oil
     // [7]nothing special
 
     std::default_random_engine generator;
     std::bernoulli_distribution bi_distribution(0.4);
     std::uniform_int_distribution<int> distribution(1,6);
+    int market_conditions
 
     bool luck = bi_distribution(generator);
 
@@ -95,66 +96,77 @@ void simulateConditions(int& market_conditions){
         }
     }
 
+    return market_conditions;
+
 }
 
+/**
 
-void simulateMarket( std::vector<Company*>& arg, std::vector<StockAI*>& arg2, int market_conditions) {
-    for (auto step : arg){                       //simulates opening of the market
-        step->simulateEarnings(market_conditions);//calculates ... stuff ... brain hurts, reconsider later
+*/
+void simulateMarket( std::vector<Company*>& company, std::vector<StockAI*>& stock_ai, int market_conditions) {
+
+    for (auto comp : company){                       //simulates opening of the market
+        comp->simulateEarnings(market_conditions);//calculates ... stuff ... brain hurts, reconsider later
     }
 
-        for (int timer = 0; timer < 3; timer++){        //runs the AI buying and selling 3 times to simulate 3 sessions during a day
-            for ( auto turn : arg2){
-                turn->searchExchange(arg);
-                turn->buyStock();//buys stocks, then sells stock for each AI
-                turn->sellStock();
-            }
+    for (int timer = 0; timer < 3; timer++){        //runs the AI buying and selling 3 times to simulate 3 sessions during a day
+        for ( auto ai : stock_ai){
+            ai->searchExchange(company);
+            ai->buyStock();//buys stocks, then sells stock for each AI
+            ai->sellStock();
         }
+    }
 
-    for (auto counter : arg){                    //simulates closing of the market
-        counter->calcValues();
+    for (auto comp : company){                    //simulates closing of the market
+        comp->calcValues();
     }
 
 }
 
+/**
+Takes no input.
+Is a factory function to churn out any number of randomly-generated `Company`-class objects.
+Randomly generates the size, type, and number of shares of the Company object.
+*/
 Company* foundCompany(){
-    int shares_p; char size_p; int type_p;
+
+    int shares_inp; char size_inp; int type_inp;
     std::default_random_engine seeder;
     std::uniform_int_distribution<int> size_generator(1,3);
 
     int go = size_generator(seeder);
 
-    switch(go){
+    switch(go){     //uses the PRNG to determine the size of the company: "S"mall, "E"stablished, or "R"enowned.
         case 1:
-            size_p = 'S';
+            size_inp = 'S';
             std::uniform_int_distribution<int> share_generator(10000, 150000);
-            shares_p = share_generator(seeder);
+            shares_inp = share_generator(seeder);
             break;
         case 2:
-            size_p = 'E';
+            size_inp = 'E';
             std::uniform_int_distribution<int> share_generator(250000, 750000);
-            shares_p = share_generator(seeder);
+            shares_inp = share_generator(seeder);
             break;
         case 3:
-            size_p = 'R';
+            size_inp = 'R';
             std::uniform_int_distribution<int> share_generator(10000000, 20000000);
-            shares_p = share_generator(seeder);
+            shares_inp = share_generator(seeder);
             break;
     }
 
     int go_again = size_generator(seeder);
 
-    switch(go_again){
+    switch(go_again){   //same PRNG but used to decide what type of company is being created
         case 1:
-           type_p = FOOD;
+           type_inp = FOOD;
            break;
         case 2:
-            type_p = TECH;
+            type_inp = TECH;
             break;
         case 3:
-            type_p = OIL;
+            type_inp = OIL;
             break;
     }
 
-    return new Company(shares_p, size_p, type_p);
+    return new Company(shares_inp, size_inp, type_inp);
 }

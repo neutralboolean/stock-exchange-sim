@@ -4,7 +4,7 @@
 
 typedef std::shared_ptr<Company> CompanyPtr
 
-static int CAUTIOUS_SELL_THRESHOLD = -20;
+static int CAUTIOUS_SELL_THRESHOLD = -20;   //if the trend of a stock is less than this CautiousAIs will sell shares.
 
 //Invest-y stuff
 //COMPLETED
@@ -15,11 +15,12 @@ InvestorAI::InvestorAI(double capital_p){
     dcom_ptr = nullptr;
 }
 
+/**
+Searches for the company with the highest change in value (delta_value) AND trending value (value_trend).
+Candidate company becomes desirable_company, set in the local, shared_ptr variable `dcom_ptr` ("desirable company pointer")
+*/
 void InvestorAI::searchExchange( std::vector<Company*> arg ) override {
-    /**
-    Searches for the company with the highest change in value (delta_value) AND trending value (value_trend).
-    Candidate company becomes desirable_company, set in the local, shared_ptr variable `dcom_ptr` ("desirable company pointer")
-    */
+
     CompanyPtr dcom_ptr = std::make_shared<Company>(this->desirable_company);
     dcom_ptr = nullptr;
 
@@ -35,11 +36,10 @@ void InvestorAI::searchExchange( std::vector<Company*> arg ) override {
     }
 }
 
+/**
+Buys stock so as to have as little capital as possible at any one time
+*/
 void InvestorAI::buyStock() override{
-    /**
-    Buys stock to have as little capital as possible at any one time
-    */
-
     CompanyPtr dcom_ptr = std::make_shared<Company>(this->desirable_company);
 
     if (this->capital > 0){
@@ -56,11 +56,11 @@ void InvestorAI::buyStock() override{
     dcom_ptr->setShares( (dcom_ptr->getShares() - stock_buy_i) ) ;
 }
 
+/**
+Sells stock if the value_trend of any of the companies he has stock in goes below zero.
+AI then sells 2/3rds of that company's stock.
+*/
 void InvestorAI::sellStock() override{
-    /**
-    Sells stock if the value_trend of any of the companies he has stock in goes below zero.
-    AI then sells 2/3rds of that company's stock.
-    */
     CompanyPtr dcom_ptr = std::make_shared<Company>(this->desirable_company);
 
     for ( auto step : this->share_holdings){
@@ -171,12 +171,10 @@ void RichQuickAI::searchExchange( std::vector<Company*> arg ) override {
         }
     }
 }
-
+/**
+Buys based on each company's daily earning which is decided based on searchExchange()
+*/
 void RichQuickAI::buyStock() override{
-    /**
-    Buys based on each company's daily earning which is decided based on searchExchange()
-    */
-
     CompanyPtr dcom_ptr = std::make_shared<Company>(this->desirable_company);
 
     if ( this->capital > 200.0 ){
@@ -190,11 +188,11 @@ void RichQuickAI::buyStock() override{
 
 }
 
+/**
+Sells stock when the delta_value of the stocks in share_holdings is at least 2x greater than when the AI bought them.
+The AI then sells 90% of the shares that it owns for that particular company
+*/
 void RichQuickAI::sellStock() override{
-    /**
-    Sells stock when the delta_value of the stocks in share_holdings is at least 2x greater than when the AI bought them.
-    The AI then sells 90% of the shares that it owns for that particular company
-    */
     CompanyPtr dcom_ptr = std::make_shared<Company>(this->desirable_company);
     for(auto iter : this->share_holdings){
         if ( (iter.first.value_trend) > ( (iter.first.delta_value) * 2) ){
